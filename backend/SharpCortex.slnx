@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SharpCortex.Api/SharpCortex.Api.csproj" />
+  <Project Path="SharpCortex.Contracts/SharpCortex.Contracts.csproj" />
+  <Project Path="SharpCortex.Core/SharpCortex.Core.csproj" />
+  <Project Path="SharpCortex.Infrastructure/SharpCortex.Infrastructure.csproj" />
+</Solution>
