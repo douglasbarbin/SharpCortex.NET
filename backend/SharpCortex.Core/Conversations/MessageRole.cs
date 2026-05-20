@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SharpCortex.Core.Conversations
+﻿namespace SharpCortex.Core.Conversations
 {
-    internal class MessageRole
+    public enum MessageRole
     {
+        System = 0,
+        User = 1,
+        Assistant = 2
     }
 }
