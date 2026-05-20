@@ -1,6 +1,7 @@
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
+using SharpCortex.Core.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +26,18 @@ builder.Services
             .AddConsoleExporter();
     });
 
-builder.Services.AddHealthChecks()
-    .AddNpgSql(
-        builder.Configuration.GetConnectionString("Postgres")!);
+var postgresConnection =
+    builder.Configuration.GetConnectionString("Postgres");
+
+var healthChecks = builder.Services.AddHealthChecks();
+
+if (!string.IsNullOrWhiteSpace(postgresConnection))
+{
+    healthChecks.AddNpgSql(postgresConnection);
+}
+
+builder.Services.Configure<OllamaOptions>(builder.Configuration.GetSection(OllamaOptions.SectionName));
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
